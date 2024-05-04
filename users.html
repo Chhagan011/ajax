@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>User Data</title>
+</head>
+<body>
+    <div class="container">
+        <h2>User Data</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body">
+                <!-- User data will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Retrieve user data from localStorage and display it in the table
+        window.onload = function() {
+            let userRecords = JSON.parse(localStorage.getItem("users")) || [];
+            let tableBody = document.getElementById("user-table-body");
+
+            userRecords.forEach(function(user) {
+                let row = tableBody.insertRow();
+                let emailCell = row.insertCell(0);
+                let passwordCell = row.insertCell(1);
+                emailCell.textContent = user.email;
+                passwordCell.textContent = user.password;
+            });
+        };
+    </script>
+</body>
+</html>
